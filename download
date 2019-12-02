@@ -1,0 +1,77 @@
+{
+  "environments": {
+    "default": {
+      "machines": {
+        "dev-machine": {
+          "servers": {},
+          "agents": [
+            "org.eclipse.che.ssh",
+            "org.eclipse.che.ws-agent",
+            "org.eclipse.che.terminal",
+            "org.eclipse.che.exec"
+          ],
+          "attributes": {
+            "memoryLimitBytes": "1610612736"
+          }
+        }
+      },
+      "recipe": {
+        "location": "eclipse/cpp_gcc",
+        "type": "dockerimage"
+      }
+    }
+  },
+  "commands": [
+    {
+      "commandLine": "echo \"hello\"",
+      "name": "newCustom-1",
+      "type": "custom",
+      "attributes": {
+        "goal": "Debug",
+        "previewUrl": ""
+      }
+    },
+    {
+      "commandLine": "cd ${current.project.path} && make && ./a.out",
+      "name": "run",
+      "type": "custom",
+      "attributes": {
+        "goal": "Run",
+        "previewUrl": ""
+      }
+    },
+    {
+      "commandLine": "echo \"hello\"",
+      "name": "newCustom",
+      "type": "custom",
+      "attributes": {
+        "goal": "Run",
+        "previewUrl": ""
+      }
+    }
+  ],
+  "projects": [
+    {
+      "source": {
+        "location": "https://github.com/claudio-unipv/tutorato-fdi.git",
+        "type": "git",
+        "parameters": {}
+      },
+      "description": "Esercizi di tutorato del corso di fondamenti di informatica",
+      "problems": [],
+      "mixins": [
+        "pullrequest"
+      ],
+      "name": "tutorato-fdi",
+      "type": "blank",
+      "path": "/tutorato-fdi",
+      "attributes": {
+        "contribute_to_branch": [
+          "master"
+        ]
+      }
+    }
+  ],
+  "defaultEnv": "default",
+  "name": "tutorato_1"
+}
